@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>For You</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            flex-direction: column;
+            background-color: pink;
+            font-family: 'Arial', sans-serif;
+            text-align: center;
+        }
+        h1 {
+            font-size: 2.5em;
+            color: red;
+            text-shadow: 2px 2px 5px white;
+        }
+        .gif-container {
+            margin-top: 20px;
+        }
+        .buttons {
+            margin-top: 20px;
+            position: relative;
+        }
+        button {
+            font-size: 1.5em;
+            padding: 10px 20px;
+            border: none;
+            cursor: pointer;
+            border-radius: 10px;
+            transition: 0.3s;
+        }
+        #yes {
+            background-color: #ff4d4d;
+            color: white;
+            transition: transform 0.3s;
+        }
+        #yes:hover {
+            background-color: #ff0000;
+        }
+        #no {
+            background-color: white;
+            color: red;
+            position: absolute;
+            left: 50px;
+            transition: transform 0.3s, opacity 0.3s;
+        }
+    </style>
+    <script>
+        let yesButtonSize = 1.5;
+        let noButtonSize = 1.5;
+        
+        function enlargeYesButton() {
+            const yesButton = document.getElementById("yes");
+            yesButtonSize += 0.3;
+            yesButton.style.transform = `scale(${yesButtonSize})`;
+            
+            const noButton = document.getElementById("no");
+            noButtonSize -= 0.2;
+            noButton.style.transform = `scale(${Math.max(noButtonSize, 0)})`;
+            if (noButtonSize <= 0.2) {
+                noButton.style.opacity = "0";
+                noButton.disabled = true;
+            }
+        }
+        
+        function showLove() {
+            document.body.innerHTML = "<h1>Yay! Happy Valentine's Day! ❤️</h1><div class='gif-container'><img src='https://media.tenor.com/blFl5tbxVp8AAAAM/squeeze-hug.gif' alt='Love Gif'></div>";
+        }
+    </script>
+</head>
+<body>
+    <h1>Will you be my Valentine? 💘</h1>
+    <div class="gif-container">
+        <img src="https://media.giphy.com/media/l4FGI8GoTL7N4DsyI/giphy.gif" alt="Cute Valentine Gif">
+    </div>
+    <div class="buttons">
+        <button id="yes" onclick="showLove()">Yes ❤️</button>
+        <button id="no" onclick="enlargeYesButton()">No 💔</button>
+    </div>
+</body>
+</html>
